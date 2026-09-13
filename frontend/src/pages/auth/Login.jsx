@@ -227,7 +227,7 @@ export const Login = () => {
         {/* Student Portal Navigation */}
         <div className="text-center mt-6">
           <Link
-            to="/student"
+            to="/student-portal"
             className="text-xs text-slate-400 hover:text-indigo-400 transition-colors inline-flex items-center gap-1.5 font-medium"
           >
             Access Student Answer Sheet Submission Portal &rarr;

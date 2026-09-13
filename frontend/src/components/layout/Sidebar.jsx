@@ -97,7 +97,7 @@ export const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
       {/* Footer Student Mode Switcher */}
       <div className="p-3 border-t border-slate-200 dark:border-slate-800/80">
         <NavLink
-          to="/student"
+          to="/student-portal"
           target="_blank"
           className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/40 dark:hover:bg-emerald-900/40 transition-colors group relative ${
             isCollapsed ? 'justify-center' : ''

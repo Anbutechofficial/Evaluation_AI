@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: edueval_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: edueval_password
+      POSTGRES_DB: edueval_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - edueval_pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: edueval_backend
+    environment:
+      - DATABASE_URL=postgresql://postgres:edueval_password@postgres:5432/edueval_db
+      - JWT_SECRET=edueval_ai_super_secret_jwt_key_2026_production_grade
+      - LLM_PROVIDER=auto
+      - VECTOR_DB_TYPE=in_memory
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: edueval_frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  edueval_pgdata:

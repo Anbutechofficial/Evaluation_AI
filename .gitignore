@@ -1,0 +1,54 @@
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+*.env
+
+# Python
+venv/
+env/
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node & Frontend
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+frontend/dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Databases & local storage
+*.db
+*.sqlite
+*.sqlite3
+**/data/uploads/
+**/data/uploads/**
+data/uploads/
+data/cache/
+data/exports/
+data/faiss_index/
+data/chroma/
+
+# Logs & temp
+logs/
+*.log
+tmp/
+temp/
+
+# IDE & OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

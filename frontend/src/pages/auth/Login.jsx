@@ -16,10 +16,17 @@ export const Login = () => {
   const { signIn, isLoaded: isSignInLoaded } = useSignIn();
   const { user: clerkUser, isLoaded: isUserLoaded, isSignedIn } = useUser();
 
-  const { login, syncClerkUser } = useAuth();
+  const { user, login, syncClerkUser } = useAuth();
   const { success, error } = useToast();
   const { theme, toggleTheme, isDark } = useTheme();
   const navigate = useNavigate();
+
+  // If already authenticated via JWT / session, navigate straight to staff dashboard
+  useEffect(() => {
+    if (user) {
+      navigate('/staff/dashboard', { replace: true });
+    }
+  }, [user, navigate]);
 
   // If already signed in via Clerk, automatically sync with backend and proceed
   useEffect(() => {

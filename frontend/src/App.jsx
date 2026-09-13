@@ -36,6 +36,12 @@ export function App() {
 
             {/* Student Public Portal */}
             <Route path="/student" element={<StudentPortal />} />
+            <Route path="/students" element={<Navigate to="/student" replace />} />
+            <Route path="/student-portal" element={<Navigate to="/student" replace />} />
+            <Route path="/portal" element={<Navigate to="/student" replace />} />
+
+            {/* Fallback for index.html */}
+            <Route path="/index.html" element={<Navigate to="/student" replace />} />
 
             {/* Staff Protected Routes */}
             <Route
